@@ -5,8 +5,8 @@ abstract class Employee (
     var base_sal : Double
 ){
     open fun giveSalary(): Double {
-        while (exp in 3..5) return base_sal + 200.0
-        while (exp > 5) return base_sal * 1.2 + 500.0
+        if (exp > 2 && exp < 5 ) return base_sal + 200.0
+        if (exp > 5) return base_sal * 1.2 + 500.0
         return base_sal
     }
 }
@@ -22,9 +22,9 @@ class Manager(
         var Dev_Count = Team.filterIsInstance<Developer>().count()
         var Des_Count = Team.filterIsInstance<Designer>().count()
         var TeamCount =  Des_Count + Dev_Count
-        while (TeamCount in 6..10)  return super.giveSalary() + 200.0
-        while (TeamCount > 10) return super.giveSalary() + 300.0
-        while (Dev_Count > TeamCount/2) return super.giveSalary() * 1.1
+        if (TeamCount > 5 && TeamCount < 10)  return super.giveSalary() + 200.0
+        if (TeamCount > 10) return super.giveSalary() + 300.0
+        if (Dev_Count > TeamCount/2) return super.giveSalary() * 1.1
         return super.giveSalary()
     }
 }
@@ -58,41 +58,42 @@ class Department(
 }
 
 fun main() {
-    //----------------- 1st-Team -----------------------//
-    val dev1 = Developer("Saral", "Rahija", 2, 20.0)
-    val dev2 = Developer("Ivan", "Petrov", 35,40.0)
-    val dev3 = Developer("Nikita", "Kolesnikov", 20, 30.0)
-    val dev4 = Developer("Artem", "Jirkov", 5, 25.0)
-    val des1 = Designer("Mikel", "Andrada", 3, 120.0, 0.7)
-    val manager1 = Manager("Andrii", "Slyvka", 3, 300.0)
+    //------------------- Team №2 -----------------------//
+    val des1 = Designer("Mykita", "Holub", 3, 135.0, 0.7)
+    val dev1 = Developer("Ivan", "Ivanica", 2, 20.0)
+    val dev2 = Developer("Anton", "Koshev", 35,40.0)
+    val dev3 = Developer("Anna", "Stela", 20, 30.0)
+    val manager1 = Manager("Chris", "Wakin", 3, 320.0)
+    manager1.Team.add(des1)
     manager1.Team.add(dev1)
     manager1.Team.add(dev2)
     manager1.Team.add(dev3)
-    manager1.Team.add(dev4)
-    manager1.Team.add(des1)
 
-    //----------------- 2nd-Team -----------------------//
-    val dev5 = Developer("Shahyar","Marwat", 4,22.5)
-    val dev6 = Developer("Haldun","Lakhani", 45, 55.0)
-    val dev7 = Developer("Ain", "Uz", 1, 10.0)
-    val des2 = Designer("Aki", "Karlal", 3, 120.0, 0.45)
-    val des3 = Designer("Husain", "Karlal", 3, 120.0, 0.6)
-    val des4 = Designer("Masoud", "Karlal", 3, 120.0, 0.35)
-    val manager2 = Manager("Wahab", "Sultan", 5, 350.0)
+    //------------------- Team №1 -----------------------//
+    val des2 = Designer("Lester", "Washington", 3, 135.0, 0.45)
+    val des3 = Designer("Kun", "Zoo", 3, 135.0, 0.6)
+    val dev4 = Developer("Steve", "Voshun", 5, 25.0)
+    val dev5 = Developer("Albert","Noshi", 4,22.5)
+    val dev6 = Developer("Stephen","Riastov", 45, 55.0)
+    val manager2 = Manager("Rahim", "As Numi", 5, 400.0)
+    manager2.Team.add(des2)
+    manager2.Team.add(des3)
+    manager2.Team.add(dev4)
     manager2.Team.add(dev5)
     manager2.Team.add(dev6)
-    manager2.Team.add(dev7)
-    manager2.Team.add(des4)
-    manager2.Team.add(des3)
-    manager2.Team.add(des2)
 
     //----------------- giveSallary -------------------------//
     val department = Department()
     department.giveSallaryAll()
     println(dev1.firstname + " " + dev1.secondname + " got salary: " + dev1.giveSalary())
     println(dev2.firstname + " " + dev2.secondname + " got salary: " + dev2.giveSalary())
+    println(dev3.firstname + " " + dev3.secondname + " got salary: " + dev3.giveSalary())
+    println(dev4.firstname + " " + dev4.secondname + " got salary: " + dev4.giveSalary())
+    println(dev5.firstname + " " + dev5.secondname + " got salary: " + dev5.giveSalary())
+    println(dev6.firstname + " " + dev6.secondname + " got salary: " + dev6.giveSalary())
     println(des1.firstname + " " + des1.secondname + " got salary: " + des1.giveSalary())
-    println(des4.firstname + " " + des4.secondname + " got salary: " + des4.giveSalary())
+    println(des2.firstname + " " + des2.secondname + " got salary: " + des2.giveSalary())
+    println(des3.firstname + " " + des3.secondname + " got salary: " + des3.giveSalary())
     println(manager1.firstname + " " + manager1.secondname + " got salary: " + manager1.giveSalary())
     println(manager2.firstname + " " + manager2.secondname + " got salary: " + manager2.giveSalary())
 }
